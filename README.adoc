@@ -7,3 +7,8 @@
 * バイナリエディタは ghex (aptでインストールできる)
 ** (Eclipse同様)初期設定フォントが変だった。 https://github.com/miiton/Cica[Cica] フォントを適用。
 * hello.img のゼロ埋めは `dd if=/dev/zero` コマンドで作成したファイルと `cat` した後 `head -c` で作成した。
+
+=== 2日目
+
+* Makefile は 次のURLのものを利用した: https://qiita.com/pollenjp/items/d15fce401bccd37e8059
+
