@@ -42,12 +42,21 @@ entry:
 		MOV		DH,0			; ヘッド0
 		MOV		CL,2			; セクタ2
 
+		MOV		SI,0			; 失敗回数を数えるレジスタ
+retry:
 		MOV		AH,0x02			; AH=0x02 : ディスク読み込み
 		MOV		AL,1			; 1セクタ
 		MOV		BX,0
 		MOV		DL,0x00			; Aドライブ
 		INT		0x13			; ディスクBIOS呼び出し
-		JC		error
+		JNC		fin				; エラーがおきなければfinへ
+		ADD		SI,1			; エラーが起きた場合カウンタをインクリメント
+		CMP		SI,5			; retryは5回までなので5と比較
+		JAE		error			; 5回リトライ後はerror
+		MOV		AH,0x00
+		MOV		DL,0x00
+		INT		0x13			; システムのリセット
+		JMP		retry
 
 ; 読み終わったけどとりあえずやることないので寝る
 
