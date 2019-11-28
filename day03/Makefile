@@ -16,4 +16,4 @@ img :
 
 run :
 	make img
-	qemu-system-i386 helloos.img
+	qemu-system-i386 -fda helloos.img
