@@ -1,5 +1,7 @@
-; hello-os
+; haribote-ipl
 ; TAB=4
+
+CYLS	EQU		10				; 読み込むシリンダ番号上限
 
 		ORG		0x7c00			; このプログラムがどこに読み込まれるのか
 
@@ -64,6 +66,14 @@ next:
 		ADD		CL,1			; セクタ番号を1進める
 		CMP		CL,18			; セクタ番号は1から18までなので上限比較
 		JBE		readloop		; 上限を超えていなければreadloopへ
+		MOV		CL,1			; 上限を超えていればセクタ番号をリセットした後ヘッド移動
+		ADD		DH,1
+		CMP		DH,2
+		JB		readloop		; ヘッド番号が上限に達していなければ読み込み処理
+		MOV		DH,0			; 上限に達していればリセットしてシリンダ番号カウントアップ
+		ADD		CH,1
+		CMP		CH,CYLS
+		JB		readloop		; シリンダ番号上限に達していなければ読み込み処理
 
 ; 読み終わったけどとりあえずやることないので寝る
 
