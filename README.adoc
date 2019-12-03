@@ -11,4 +11,8 @@
 === 2日目
 
 * Makefile は 次のURLのものを利用した: https://qiita.com/pollenjp/items/d15fce401bccd37e8059
+* QEMUがマウスのフォーカスを奪ってしまった場合、抜けるには `Ctrl` + `Alt` 同時押し。QEMUウィンドウのタイトルバーに表示されている。
 
+=== 3日目
+
+* Windows依存部分についてのUbuntu版は https://qiita.com/pollenjp/items/8fcb9573cdf2dc6e2668[このページ]を参考にしたが、 このままだと「 _GLOBAL_OFFSET_TABLE_ に対する定義されていない参照です」というエラーが出た。 https://github.com/harrybotter30/haribote/blob/master/doc/harib00i.md[ここ]にかかれている通り `-fno-pic` オプションを追加することで回避。
