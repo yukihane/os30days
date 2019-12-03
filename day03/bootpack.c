@@ -1,8 +1,9 @@
+// bootpack.c
+extern void io_hlt(void);
+
 void HariMain(void)
 {
-
 fin:
-	/* ここにHLTを入れたいのだが、C言語ではHLTが使えない！ */
-	goto fin;
-
+  io_hlt();
+  goto fin;
 }
