@@ -5,8 +5,8 @@ ipl10.bin : ipl10.asm
 
 asm : ipl10.bin
 
-haribote.sys : haribote.asm
-	nasm haribote.asm -o haribote.sys -l haribote.lst
+haribote.sys : asmhead.asm
+	nasm asmhead.asm -o haribote.sys -l haribote.lst
 
 haribote.img : ipl10.bin haribote.sys
 	mformat -f 1440 -C -B ipl10.bin -i haribote.img ::
