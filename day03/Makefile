@@ -1,15 +1,15 @@
 default: img
 
-ipl.bin : ipl.asm
-	nasm ipl.asm -o ipl.bin -l ipl.lst
+ipl10.bin : ipl10.asm
+	nasm ipl10.asm -o ipl10.bin -l ipl10.lst
 
-asm : ipl.bin
+asm : ipl10.bin
 
 haribote.sys : haribote.asm
 	nasm haribote.asm -o haribote.sys -l haribote.lst
 
-haribote.img : ipl.bin haribote.sys
-	mformat -f 1440 -C -B ipl.bin -i haribote.img ::
+haribote.img : ipl10.bin haribote.sys
+	mformat -f 1440 -C -B ipl10.bin -i haribote.img ::
 	mcopy haribote.sys -i haribote.img ::
 
 img : haribote.img
